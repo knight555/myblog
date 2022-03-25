@@ -1,0 +1,79 @@
+spring:
+  datasource:
+    username: root
+    password: 123456
+    #serverTimezone=UTC 配置时区
+    #jdbc:mysql://localhost:3306/zhihuigushu?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=CONVERT_TO_NULL
+    url: jdbc:mysql://localhost:3306/blog?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      username: root
+      password: 123456
+      url: jdbc:mysql://localhost:3306/blog?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+      #Spring Boot 默认是不注入这些属性值的，需要自己绑定
+      #druid 数据源专有配置
+      initialSize: 5
+      minIdle: 5
+      maxActive: 20
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+
+
+      #配置监控统计拦截的filters，stat:监控统计、log4j：日志记录、wall：防御sql注入
+      #如果允许时报错  java.lang.ClassNotFoundException: org.apache.log4j.Priority
+      #则导入 log4j 依赖即可，Maven 地址：https://mvnrepository.com/artifact/log4j/log4j
+      filters: stat,wall,log4j
+      maxPoolPreparedStatementPerConnectionSize: 20
+      useGlobalDataSourceStat: true
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+
+  servlet:
+    multipart:
+      max-file-size: 1000MB
+      max-request-size: 1000MB
+      file-size-threshold: 0
+      enabled: true
+      location: /root/myblog
+#  security:
+#    basic:
+#      path: /swagger-ui.html
+#      enabled: true
+#    user:
+#      name: admin #账号
+#      password: xzy123456
+mybatis-plus:
+#  global-config:
+#    db-config:
+#      logic-delete-field: flag  # 全局逻辑删除的实体字段名(since 3.3.0,配置后可以忽略不配置步骤2)
+#      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+#      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+#      id-type: assign_uuid
+  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+  logging:
+    level:
+    root: info
+
+server:
+  address: 0.0.0.0
+  port: 9999
+  connectionTimeout: -1
+#  ssl:
+#      key-store: classpath:C:/Users/ZhuGuibo/test.jks
+#      key-store-password: 123456
+
+#swagger:
+#  production: false
+#  basic:
+#    enable: true
+#    username: admin
+#    password: 123456
+
