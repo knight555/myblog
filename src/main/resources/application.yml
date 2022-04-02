@@ -41,13 +41,43 @@ spring:
       file-size-threshold: 0
       enabled: true
       location: /root/myblog
+
+#  rabbitmq:
+#    host: 127.0.0.1
+#    port: 15672
+#    username: guest
+#    password: guest
+
+#  redis:
+#    # 地址
+#    host: localhost
+#    # 端口，默认为6379
+#    port: 6379
+#    # 数据库索引
+#    database: 0
+#    # 密码
+#    password:
+#    # 连接超时时间
+#    timeout: 10s
+#    lettuce:
+#      pool:
+#        # 连接池中的最小空闲连接
+#        min-idle: 0
+#        # 连接池中的最大空闲连接
+#        max-idle: 8
+#        # 连接池的最大数据库连接数
+#        max-active: 8
+#        # #连接池最大阻塞等待时间（使用负值表示没有限制）
+#        max-wait: -1ms
+
 #  security:
 #    basic:
-#      path: /swagger-ui.html
-#      enabled: true
+##      path: /swagger-ui.html
+#      enabled: false
 #    user:
 #      name: admin #账号
 #      password: xzy123456
+
 mybatis-plus:
 #  global-config:
 #    db-config:
@@ -66,6 +96,8 @@ server:
   address: 0.0.0.0
   port: 9999
   connectionTimeout: -1
+
+
 #  ssl:
 #      key-store: classpath:C:/Users/ZhuGuibo/test.jks
 #      key-store-password: 123456
