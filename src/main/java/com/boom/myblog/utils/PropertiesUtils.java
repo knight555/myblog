@@ -77,10 +77,6 @@ public class PropertiesUtils {
         return properties.getProperty("staticResource");
     }
 
-    public String getAttachmentGainPpath() {
-        return properties.getProperty("attachmentGainPath");
-    }
-
     public static void main(String[] args) {
         PropertiesUtils pro = PropertiesUtils.getInstance();
         String value = String.valueOf(pro.getProperty("custom.properties.name").toString());
