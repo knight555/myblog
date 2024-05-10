@@ -2,6 +2,7 @@ package com.boom.myblog.entity;
 
 import java.time.LocalDateTime;
 import java.io.Serializable;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -15,7 +16,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class File implements Serializable {
+public class FileEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -24,6 +25,8 @@ public class File implements Serializable {
     private String filename;
 
     private String userId;
+
+    private Integer fileType; // 1-文本，2-图片，3-其他
 
     private LocalDateTime gmtCreated;
 

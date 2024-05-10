@@ -1,6 +1,6 @@
 package com.boom.myblog.mapper;
 
-import com.boom.myblog.entity.File;
+import com.boom.myblog.entity.FileEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -13,6 +13,6 @@ import org.apache.ibatis.annotations.Mapper;
  * @since 2022-04-19
  */
 @Mapper
-public interface FileMapper extends BaseMapper<File> {
+public interface FileMapper extends BaseMapper<FileEntity> {
 
 }

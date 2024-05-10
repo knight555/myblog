@@ -1,10 +1,12 @@
 package com.boom.myblog.service.impl;
 
-import com.boom.myblog.entity.File;
+import com.boom.myblog.entity.FileEntity;
 import com.boom.myblog.mapper.FileMapper;
 import com.boom.myblog.service.IFileService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p>
@@ -15,6 +17,10 @@ import org.springframework.stereotype.Service;
  * @since 2022-04-19
  */
 @Service
-public class FileServiceImpl extends ServiceImpl<FileMapper, File> implements IFileService {
+public class FileServiceImpl extends ServiceImpl<FileMapper, FileEntity> implements IFileService {
 
+    @Override
+    public int insertBatchFile(List<FileEntity> fileEntityList) {
+        return 0;
+    }
 }

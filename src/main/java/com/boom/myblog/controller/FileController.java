@@ -2,6 +2,8 @@ package com.boom.myblog.controller;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.IdUtil;
+import com.boom.myblog.entity.FileEntity;
+import com.boom.myblog.service.IFileService;
 import com.boom.myblog.utils.PropertiesUtils;
 import io.swagger.annotations.Api;
 import org.springframework.core.io.FileSystemResource;
@@ -11,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -27,6 +30,9 @@ public class FileController {
      * 属性配置
      */
     private static PropertiesUtils pro = PropertiesUtils.getInstance();
+
+    @Resource
+    private IFileService fileService;
 
     @GetMapping("/downloadFile")
     public ResponseEntity<FileSystemResource> downloadFile(String path) {
@@ -70,9 +76,16 @@ public class FileController {
             // get the file and save it somewhere
             byte[] bytes = multipart.getBytes();
             num++;
-            filename = DateUtil.date().toString("yyyy" + "MM" + "dd") + "-" + userId + "-"+ IdUtil.simpleUUID() +"-" + num + "." + strArray[suffixIndex];
-            path = Paths.get(pro.getAttachmentPath() + filename);
+            String fileid = IdUtil.simpleUUID();
+            filename = DateUtil.date().toString("yyyyMMdd") + "-" + userId + "-"+ fileid +"-" + num + "." + strArray[suffixIndex];
+            path = Paths.get(pro.getUserFilePath() + filename);
             Files.write(path, bytes);
+            // 插入数据库
+            FileEntity fe = new FileEntity();
+            fe.setFileId(fileid);
+            fe.setFilename(filename);
+            fe.setUserId(userId);
+            fileService.save(fe);
         }
         return num;
     }
